@@ -15,7 +15,7 @@ export default function HomePage() {
           href="/analyze"
           className="inline-block mt-4 px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition"
         >
-          Get Started
+          Analyze My Footprint
         </a>
       </div>
     </main>

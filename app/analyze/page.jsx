@@ -1,5 +1,7 @@
 "use client";
 
+import AIResponseCard from "@/components/AIResponseCard";
+
 import { useState } from "react";
 
 export default function AnalyzePage() {
@@ -55,18 +57,7 @@ export default function AnalyzePage() {
 
         {/* Response Section */}
         {response && (
-          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-            {response.error ? (
-              <p className="text-red-300">{response.error}</p>
-            ) : (
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Results</h3>
-                <p className="whitespace-pre-line opacity-90">
-                  {response.output}
-                </p>
-              </div>
-            )}
-          </div>
+            <AIResponseCard content={response.output} />
         )}
       </div>
     </main>
