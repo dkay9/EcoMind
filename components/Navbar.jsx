@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Search, Bell, User } from 'lucide-react';
 
@@ -14,9 +16,7 @@ export default function GlassNavbar() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
-      {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'py-2' : 'py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,9 +27,9 @@ export default function GlassNavbar() {
               {/* Logo */}
               <div className="flex items-center space-x-2">
                 <div className="w-10 h-10 bg-gradient-to-br from-white/30 to-white/10 rounded-xl backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">G</span>
+                  <span className="text-white font-bold text-xl">EM</span>
                 </div>
-                <span className="text-white font-bold text-xl hidden sm:block">GlassNav</span>
+                <span className="text-white font-bold text-xl hidden sm:block">EcoMind</span>
               </div>
 
               {/* Desktop Navigation */}
@@ -94,29 +94,6 @@ export default function GlassNavbar() {
             )}
           </div>
         </div>
-      </nav>
-
-      {/* Demo Content */}
-      <div className="pt-32 px-4 pb-20">
-        <div className="max-w-4xl mx-auto text-center text-white space-y-8">
-          <h1 className="text-5xl md:text-7xl font-bold">
-            Glassmorphism
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80">
-            Scroll down to see the navbar effect
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
-                <div className="text-6xl mb-4">✨</div>
-                <h3 className="text-xl font-semibold mb-2">Feature {i}</h3>
-                <p className="text-white/70">Beautiful glass effect with modern design</p>
-              </div>
-            ))}
-          </div>
-          <div className="h-screen"></div>
-        </div>
-      </div>
-    </div>
+    </nav>
   );
 }
