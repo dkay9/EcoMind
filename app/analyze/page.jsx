@@ -16,20 +16,21 @@ export default function AnalyzePage() {
     setResponse(null);
 
     try {
-      const res = await fetch("/api/analyze", {
+        const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input }),
-      });
+        body: JSON.stringify({ prompt: input }), // <- match API
+        });
 
-      const data = await res.json();
-      setResponse(data);
+        const data = await res.json();
+        setResponse(data.output); // <- store string directly
     } catch (error) {
-      setResponse({ error: "Something went wrong." });
+        setResponse("Something went wrong.");
     }
 
     setLoading(false);
-  };
+};
+
 
   return (
     <main className="min-h-screen neon-bg text-white p-6 flex items-start justify-center">
