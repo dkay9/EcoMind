@@ -5,3 +5,29 @@
 body {
   @apply bg-gray-950 text-gray-100;
 }
+
+@keyframes neonGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.neon-bg {
+  background: linear-gradient(
+    -45deg,
+    #0f0c29,
+    #302b63,
+    #24243e,
+    #3b1e54,
+    #6a0572,
+    #7c1a9b
+  );
+  background-size: 400% 400%;
+  animation: neonGradient 12s ease infinite;
+}
