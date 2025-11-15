@@ -5,7 +5,7 @@ export async function POST(req) {
 
   // Temporary mock result
   const mockOutput = `
-Your activity: ${input}
+ Your activity: ${input}
 
 Estimated carbon impact: ~2.3kg CO₂/day
 Main factors: energy usage, transportation

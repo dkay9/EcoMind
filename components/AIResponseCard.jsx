@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import useTypingLines from "@/hooks/useTypingLines";
 
 export default function AIResponseCard({ title = "Analysis Result", content }) {
+  const typedLines = useTypingLines(content, 50); // adjust speed per line
   if (!content) return null;
 
   return (
@@ -14,36 +16,24 @@ export default function AIResponseCard({ title = "Analysis Result", content }) {
     >
       <h3 className="text-2xl font-semibold">{title}</h3>
 
-      <div className="space-y-4 text-white/90 leading-relaxed">
-        {formatContent(content)}
+      <div className="space-y-2 text-white/90 leading-relaxed">
+        {typedLines.map((line, i) => (
+          <FormattedLine key={i} line={line} />
+        ))}
       </div>
     </motion.div>
   );
 }
 
-// Utility to auto-format the AI output
-function formatContent(text) {
-  const sections = text.trim().split("\n").filter(Boolean);
+// Split header vs bullet vs normal line
+function FormattedLine({ line }) {
+  if (!line) return null; // <-- add this guard
 
-  return sections.map((line, i) => {
-    const isHeader = line.includes(":") && !line.startsWith("•");
-
-    if (isHeader) {
-      return (
-        <p key={i} className="font-semibold text-white">
-          {line}
-        </p>
-      );
-    }
-
-    if (line.startsWith("•")) {
-      return (
-        <p key={i} className="pl-4">
-          {line}
-        </p>
-      );
-    }
-
-    return <p key={i}>{line}</p>;
-  });
+  if (line.includes(":") && !line.startsWith("•")) {
+    return <p className="font-semibold text-white">{line}</p>;
+  }
+  if (line.startsWith("•")) {
+    return <p className="pl-4">{line}</p>;
+  }
+  return <p>{line}</p>;
 }
