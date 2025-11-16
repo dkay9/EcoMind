@@ -10,25 +10,25 @@ export default function AnalyzePage() {
   const [response, setResponse] = useState(null);
 
   const handleAnalyze = async () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    setLoading(true);
-    setResponse(null);
+  setLoading(true);
+  setResponse(null);
 
-    try {
-        const res = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input }), // <- match API
-        });
+  try {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input }), // ✅ match API route
+    });
 
-        const data = await res.json();
-        setResponse(data.output); // <- store string directly
-    } catch (error) {
-        setResponse("Something went wrong.");
-    }
+    const data = await res.json();
+    setResponse(data.output); // store the string directly
+  } catch (error) {
+    setResponse("Something went wrong.");
+  }
 
-    setLoading(false);
+  setLoading(false);
 };
 
 
