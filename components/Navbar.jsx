@@ -15,8 +15,8 @@ export default function GlassNavbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+  return (  
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'py-2' : 'py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@ export default function GlassNavbar() {
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-1">
-                {['Home', 'Features', 'Pricing', 'About', 'Contact'].map((item) => (
+                {['Home', 'Dashboard'].map((item) => (
                   <a
                     key={item}
                     href="#"
@@ -94,6 +94,6 @@ export default function GlassNavbar() {
             )}
           </div>
         </div>
-    </nav>
+      </nav>
   );
 }
