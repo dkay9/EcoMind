@@ -19,11 +19,12 @@ export default function AnalyzePage() {
     const res = await fetch("/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input }), // ✅ match API route
+      body: JSON.stringify({ input }), // match API route
     });
 
     const data = await res.json();
     setResponse(data.output); // store the string directly
+    setInput("");
   } catch (error) {
     setResponse("Something went wrong.");
   }
@@ -58,7 +59,7 @@ export default function AnalyzePage() {
 
         {/* Response Section */}
         {response && (
-            <AIResponseCard content={response.output} />
+            <AIResponseCard content={response} />
         )}
       </div>
     </main>
