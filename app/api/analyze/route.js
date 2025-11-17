@@ -1,19 +1,27 @@
 import { NextResponse } from "next/server";
-import { analyzeWithGemini } from "@/lib/gemini"; // use your wrapper
+import { analyzeWithGemini } from "@/lib/gemini";
 
 export async function POST(req) {
   try {
     const { input } = await req.json();
 
-    if (!input?.trim()) {
-      return NextResponse.json({ error: "Missing input" }, { status: 400 });
+    if (!input || !input.trim()) {
+      return NextResponse.json(
+        { error: "Input is required" },
+        { status: 400 }
+      );
     }
 
-    const result = await analyzeWithGemini(input);
+    const output = await analyzeWithGemini(input);
+    return NextResponse.json({ output });
+  } catch (err) {
+    console.error("Analyze error:", err);
 
-    return NextResponse.json({ output: result });
-  } catch (error) {
-    console.error("Gemini API error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: "EcoMind is temporarily busy. Try again in a few seconds.",
+      },
+      { status: 500 }
+    );
   }
 }
